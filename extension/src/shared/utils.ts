@@ -70,7 +70,7 @@ export function replaceMessageVariables(
  * Generate a unique ID
  */
 export function generateId(): string {
-  return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  return `${Date.now()}-${Math.random().toString(36).substring(2, 11)}`;
 }
 
 /**
@@ -98,4 +98,45 @@ export function debounce<T extends (...args: any[]) => any>(
  */
 export function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * Convert array of objects to CSV string
+ */
+export function arrayToCSV(data: any[], headers: string[]): string {
+  // Escape CSV values
+  const escapeCSV = (value: any): string => {
+    if (value === null || value === undefined) return '';
+    const stringValue = String(value);
+    if (stringValue.includes(',') || stringValue.includes('"') || stringValue.includes('\n')) {
+      return `"${stringValue.replace(/"/g, '""')}"`;
+    }
+    return stringValue;
+  };
+
+  // Create header row
+  const headerRow = headers.map(escapeCSV).join(',');
+
+  // Create data rows
+  const dataRows = data.map(row => {
+    return headers.map(header => escapeCSV(row[header])).join(',');
+  });
+
+  return [headerRow, ...dataRows].join('\n');
+}
+
+/**
+ * Download data as CSV file
+ */
+export function downloadCSV(filename: string, csvContent: string): void {
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+
+  link.setAttribute('href', url);
+  link.setAttribute('download', filename);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }

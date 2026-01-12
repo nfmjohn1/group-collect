@@ -35,9 +35,36 @@ const Settings: React.FC = () => {
   };
 
   const handleSyncQuestions = async () => {
-    // TODO: Implement sync questions functionality
-    setLastSync(new Date());
-    alert('Questions synced successfully!');
+    if (!sheetUrl || !isValidGoogleSheetUrl(sheetUrl)) {
+      alert('Please save a valid Google Sheet URL first');
+      return;
+    }
+
+    try {
+      // Send message to background script to sync questions with Google Sheets
+      const response = await chrome.runtime.sendMessage({
+        type: 'SYNC_QUESTIONS_TO_SHEET',
+        sheetUrl
+      });
+
+      if (response?.success) {
+        setLastSync(new Date());
+        alert('Questions/Answers mapping synced successfully!');
+      } else {
+        alert(response?.error || 'Failed to sync questions. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error syncing questions:', error);
+      alert('Error syncing questions. Please ensure you have granted permissions to access Google Sheets.');
+    }
+  };
+
+  const handleOpenSheet = () => {
+    if (!sheetUrl || !isValidGoogleSheetUrl(sheetUrl)) {
+      alert('Please save a valid Google Sheet URL first');
+      return;
+    }
+    chrome.tabs.create({ url: sheetUrl });
   };
 
   const handleToggleDecline = async () => {
@@ -118,12 +145,22 @@ const Settings: React.FC = () => {
                 placeholder="https://docs.google.com/spreadsheets/d/..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <button
-                onClick={handleSaveSheetUrl}
-                className="mt-2 text-sm text-primary hover:underline"
-              >
-                Save URL
-              </button>
+              <div className="flex gap-2 mt-2">
+                <button
+                  onClick={handleSaveSheetUrl}
+                  className="text-sm text-primary hover:underline"
+                >
+                  Save URL
+                </button>
+                {sheetUrl && isValidGoogleSheetUrl(sheetUrl) && (
+                  <button
+                    onClick={handleOpenSheet}
+                    className="text-sm text-blue-600 hover:underline"
+                  >
+                    Open Google Sheet
+                  </button>
+                )}
+              </div>
             </div>
 
             {/* Sync Questions */}
