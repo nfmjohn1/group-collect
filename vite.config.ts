@@ -32,6 +32,17 @@ export default defineConfig({
         },
         chunkFileNames: 'chunks/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash][extname]',
+        // Inline all imports for content scripts to avoid module loading issues
+        manualChunks: (id) => {
+          // Don't create separate chunks for content script dependencies
+          if (id.includes('content/scraper') || id.includes('content/decliner')) {
+            return undefined;
+          }
+          // For everything else, use default chunking
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+        },
       },
     },
   },

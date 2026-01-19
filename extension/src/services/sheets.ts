@@ -1,16 +1,17 @@
 import { extractSheetId } from '@/shared/utils';
 import type { MemberRequest } from '@/shared/types';
 
-const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
-const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
+// Google API configuration (for future use)
+// const GOOGLE_API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+// const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+// const SHEETS_SCOPE = 'https://www.googleapis.com/auth/spreadsheets';
 
-interface GoogleAuthToken {
-  access_token: string;
-  expires_in: number;
-  token_type: string;
-  scope: string;
-}
+// interface GoogleAuthToken {
+//   access_token: string;
+//   expires_in: number;
+//   token_type: string;
+//   scope: string;
+// }
 
 class GoogleSheetsService {
   private accessToken: string | null = null;

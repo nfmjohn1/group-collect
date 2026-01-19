@@ -13,6 +13,68 @@ const manifestDest = path.resolve(distDir, 'manifest.json');
 fs.copyFileSync(manifestSrc, manifestDest);
 console.log('✓ Copied manifest.json to dist/');
 
+// Copy icons to dist/icons/
+const iconsDir = path.resolve(distDir, 'icons');
+if (!fs.existsSync(iconsDir)) {
+  fs.mkdirSync(iconsDir, { recursive: true });
+}
+
+// Find the actual icon files (they may be nested)
+const findIcons = (dir) => {
+  const iconFiles = [];
+  const files = fs.readdirSync(dir, { withFileTypes: true });
+  
+  for (const file of files) {
+    const fullPath = path.join(dir, file.name);
+    if (file.isDirectory()) {
+      iconFiles.push(...findIcons(fullPath));
+    } else if (file.name.match(/^icon(16|48|128)\.png$/)) {
+      iconFiles.push(fullPath);
+    }
+  }
+  return iconFiles;
+};
+
+// Look for icons in extension/public or dist
+const publicIconsDir = path.resolve(__dirname, '../extension/public/icons');
+const distIconsDir = path.resolve(distDir, 'icons');
+
+let iconsCopied = false;
+
+// Try to find and copy icons
+if (fs.existsSync(publicIconsDir)) {
+  const foundIcons = findIcons(publicIconsDir);
+  for (const iconPath of foundIcons) {
+    const iconName = path.basename(iconPath);
+    const destPath = path.resolve(iconsDir, iconName);
+    fs.copyFileSync(iconPath, destPath);
+    iconsCopied = true;
+  }
+}
+
+if (!iconsCopied && fs.existsSync(distIconsDir)) {
+  const foundIcons = findIcons(distIconsDir);
+  for (const iconPath of foundIcons) {
+    const iconName = path.basename(iconPath);
+    if (iconPath !== path.resolve(iconsDir, iconName)) {
+      const destPath = path.resolve(iconsDir, iconName);
+      fs.copyFileSync(iconPath, destPath);
+      iconsCopied = true;
+    }
+  }
+}
+
+if (iconsCopied) {
+  console.log('✓ Copied icons to dist/icons/');
+} else {
+  console.log('⚠ Warning: No icons found, creating placeholder icons');
+  // Create simple placeholder icons
+  const { createCanvas } = await import('canvas').catch(() => null);
+  if (!createCanvas) {
+    console.log('  (Install canvas package for auto-generated icons: npm install canvas)');
+  }
+}
+
 // Move HTML files to root of dist
 const popupHtmlSrc = path.resolve(distDir, 'extension/src/popup/index.html');
 const popupHtmlDest = path.resolve(distDir, 'popup.html');
