@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Group Collect</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 900px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .content {
+      padding: 40px;
+    }
+
+    .step {
+      display: flex;
+      align-items: start;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeInUp 0.6s forwards;
+    }
+
+    .step:nth-child(1) { animation-delay: 0.2s; }
+    .step:nth-child(2) { animation-delay: 0.4s; }
+    .step:nth-child(3) { animation-delay: 0.6s; }
+    .step:nth-child(4) { animation-delay: 0.8s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step-number {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      flex-shrink: 0;
+      margin-right: 20px;
+    }
+
+    .step-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .step-content p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .features {
+      background: #f7f9fc;
+      padding: 30px;
+      border-radius: 12px;
+      margin: 30px 0;
+    }
+
+    .features h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      color: #555;
+    }
+
+    .feature-item::before {
+      content: '✓';
+      background: #4CAF50;
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    .cta {
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    .footer a {
+      color: #667eea;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎉 Welcome to Group Collect!</h1>
+      <p>Your automated Facebook group management assistant</p>
+    </div>
+
+    <div class="content">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Navigate to Your Facebook Group</h3>
+          <p>Open your Facebook group's member requests page. Click the extension icon to open the popup.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Configure Google Sheets (Optional)</h3>
+          <p>Go to Settings and add your Google Sheets URL. This allows you to automatically export member data to your spreadsheet.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Collect Member Data</h3>
+          <p>Click "Collect Members" to scrape pending member requests. All data is saved locally and can be exported anytime.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Set Up Auto-Decline Rules (Optional)</h3>
+          <p>Configure automatic decline rules based on email requirements or unanswered questions to save time reviewing requests.</p>
+        </div>
+      </div>
+
+      <div class="features">
+        <h3>✨ Key Features</h3>
+        <div class="feature-grid">
+          <div class="feature-item">Member data collection</div>
+          <div class="feature-item">Google Sheets export</div>
+          <div class="feature-item">Auto-decline rules</div>
+          <div class="feature-item">Data dashboard</div>
+          <div class="feature-item">CSV export</div>
+          <div class="feature-item">Automatic backups</div>
+          <div class="feature-item">Real-time notifications</div>
+          <div class="feature-item">Error logging</div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <button class="btn-primary" id="getStartedBtn">Get Started</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>Need help? Check out the <a href="#" id="helpLink">documentation</a> or visit <a href="#" id="settingsLink">settings</a></p>
+    </div>
+  </div>
+
+  <script src="onboarding.js"></script>
+</body>
+</html>

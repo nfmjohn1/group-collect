@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Group Collect - Help Documentation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    .header p {
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 120px;
+      width: 250px;
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      max-height: calc(100vh - 140px);
+      overflow-y: auto;
+    }
+
+    .sidebar h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 15px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      color: #667eea;
+      text-decoration: none;
+      display: block;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .sidebar a:hover {
+      background: #f0f2f5;
+    }
+
+    .content {
+      margin-left: 290px;
+      background: white;
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      color: #667eea;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #f0f2f5;
+    }
+
+    .section h3 {
+      font-size: 1.3rem;
+      margin-top: 25px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .section ul, .section ol {
+      margin-left: 25px;
+      margin-bottom: 15px;
+    }
+
+    .section li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .code-block {
+      background: #f5f7fa;
+      border: 1px solid #e1e4e8;
+      border-radius: 6px;
+      padding: 15px;
+      margin: 15px 0;
+      font-family: 'Courier New', monospace;
+      overflow-x: auto;
+    }
+
+    .note {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+
+    .note strong {
+      color: #856404;
+    }
+
+    .warning {
+      background: #f8d7da;
+      border-left: 4px solid #dc3545;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+
+    .warning strong {
+      color: #721c24;
+    }
+
+    .success {
+      background: #d4edda;
+      border-left: 4px solid #28a745;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+
+    .success strong {
+      color: #155724;
+    }
+
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin: 20px 0;
+    }
+
+    .feature-card {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      border: 1px solid #e9ecef;
+    }
+
+    .feature-card h4 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        position: static;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📚 Group Collect Help</h1>
+    <p>Complete guide to using Group Collect for Facebook group management</p>
+  </div>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#collecting-members">Collecting Members</a></li>
+        <li><a href="#google-sheets">Google Sheets Integration</a></li>
+        <li><a href="#auto-decline">Auto-Decline Feature</a></li>
+        <li><a href="#dashboard">Data Dashboard</a></li>
+        <li><a href="#backup-restore">Backup & Restore</a></li>
+        <li><a href="#settings">Settings</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <!-- Getting Started -->
+      <section id="getting-started" class="section">
+        <h2>🚀 Getting Started</h2>
+        <p>Group Collect is a Chrome extension that helps you manage Facebook group member requests efficiently by automating data collection, exports, and member filtering.</p>
+
+        <h3>Installation</h3>
+        <ol>
+          <li>Install the Group Collect extension from the Chrome Web Store</li>
+          <li>Pin the extension to your toolbar for easy access</li>
+          <li>Navigate to your Facebook group's member requests page</li>
+          <li>Click the extension icon to open the popup</li>
+        </ol>
+
+        <h3>First Time Setup</h3>
+        <ol>
+          <li>Open the extension popup by clicking the icon</li>
+          <li>Go to <strong>Settings</strong></li>
+          <li>(Optional) Add your Google Sheets URL for automatic exports</li>
+          <li>Configure decline rules if you want to auto-filter member requests</li>
+        </ol>
+
+        <div class="success">
+          <strong>✓ Pro Tip:</strong> The extension badge shows the number of pending member requests in real-time!
+        </div>
+      </section>
+
+      <!-- Collecting Members -->
+      <section id="collecting-members" class="section">
+        <h2>👥 Collecting Members</h2>
+        <p>The core feature of Group Collect is automated member data collection from Facebook group requests.</p>
+
+        <h3>How to Collect Member Data</h3>
+        <ol>
+          <li>Navigate to your Facebook group's member requests page</li>
+          <li>Make sure you can see the pending member requests on the page</li>
+          <li>Click the Group Collect extension icon</li>
+          <li>Click the <strong>"Collect Members"</strong> button</li>
+          <li>Wait for the collection process to complete (you'll see a notification)</li>
+        </ol>
+
+        <h3>What Data is Collected?</h3>
+        <ul>
+          <li><strong>Facebook Username:</strong> The member's Facebook profile name</li>
+          <li><strong>Profile URL:</strong> Link to their Facebook profile</li>
+          <li><strong>Join Date:</strong> When they requested to join</li>
+          <li><strong>Approval Questions (Q1-Q3):</strong> Answers to your group's membership questions</li>
+          <li><strong>Status:</strong> Pending, Approved, or Declined</li>
+        </ul>
+
+        <div class="note">
+          <strong>Note:</strong> All data is stored locally in your browser using Chrome's storage API. Nothing is sent to external servers.
+        </div>
+
+        <h3>Viewing Collected Members</h3>
+        <p>After collecting member data, you can:</p>
+        <ul>
+          <li>View the total count in the popup Home page</li>
+          <li>Click <strong>"View Data"</strong> to open the full dashboard</li>
+          <li>Export to CSV or push to Google Sheets</li>
+        </ul>
+      </section>
+
+      <!-- Google Sheets Integration -->
+      <section id="google-sheets" class="section">
+        <h2>📊 Google Sheets Integration</h2>
+        <p>Export your member data directly to Google Sheets for advanced analysis and record-keeping.</p>
+
+        <h3>Setting Up Google Sheets</h3>
+        <ol>
+          <li>Create a new Google Sheet (or use an existing one)</li>
+          <li>Copy the sheet URL from your browser</li>
+          <li>Open Group Collect Settings</li>
+          <li>Paste the URL in the "Google Sheet URL" field</li>
+          <li>Click <strong>"Save URL"</strong></li>
+        </ol>
+
+        <h3>Syncing Questions Mapping</h3>
+        <p>Before pushing data, sync the question mapping:</p>
+        <ol>
+          <li>Make sure you have collected member data first</li>
+          <li>Click <strong>"SYNC QUESTIONS/ANSWERS"</strong> in Settings</li>
+          <li>This creates the proper column headers in your sheet</li>
+        </ol>
+
+        <h3>Pushing Data to Sheets</h3>
+        <p>You can export data in two ways:</p>
+        <ul>
+          <li><strong>From Home:</strong> Click "Push to Sheet" button</li>
+          <li><strong>From Dashboard:</strong> Click "Push to Google Sheet" in the action bar</li>
+        </ul>
+
+        <div class="note">
+          <strong>Note:</strong> The first time you push data, you'll need to grant the extension permission to access your Google account.
+        </div>
+
+        <h3>Sheet Format</h3>
+        <p>Your Google Sheet will have the following columns:</p>
+        <div class="code-block">
+Group Name | Facebook Username | Joined On | Q1 | Q2 | Q3 | Status | Date Added
+        </div>
+      </section>
+
+      <!-- Auto-Decline Feature -->
+      <section id="auto-decline" class="section">
+        <h2>⚡ Auto-Decline Feature</h2>
+        <p>Automatically decline member requests that don't meet your criteria, saving you time on manual review.</p>
+
+        <div class="warning">
+          <strong>⚠️ Warning:</strong> Auto-declined members are permanently declined on Facebook and cannot be easily restored. Configure rules carefully!
+        </div>
+
+        <h3>Enabling Auto-Decline</h3>
+        <ol>
+          <li>Go to <strong>Settings</strong></li>
+          <li>Find the "Auto-Decline Feature" toggle</li>
+          <li>Click the toggle (you'll see a confirmation warning)</li>
+          <li>Confirm to enable the feature</li>
+        </ol>
+
+        <h3>Configuring Decline Rules</h3>
+        <p>Once enabled, you can configure four types of rules:</p>
+
+        <div class="feature-list">
+          <div class="feature-card">
+            <h4>Email Required</h4>
+            <p>Decline if email is missing from Q1, Q2, or Q3 answers</p>
+          </div>
+          <div class="feature-card">
+            <h4>Question 1 Required</h4>
+            <p>Decline if first approval question is unanswered</p>
+          </div>
+          <div class="feature-card">
+            <h4>Question 2 Required</h4>
+            <p>Decline if second approval question is unanswered</p>
+          </div>
+          <div class="feature-card">
+            <h4>Question 3 Required</h4>
+            <p>Decline if third approval question is unanswered</p>
+          </div>
+        </div>
+
+        <h3>How Auto-Decline Works</h3>
+        <ol>
+          <li>The extension monitors your Facebook group members page</li>
+          <li>When new members are detected, it evaluates them against your rules</li>
+          <li>If a member fails any enabled rule, they are automatically declined</li>
+          <li>All declines are logged with reasons for your records</li>
+          <li>You receive notifications when members are declined</li>
+        </ol>
+
+        <h3>Decline Log</h3>
+        <p>Every auto-declined member is logged with:</p>
+        <ul>
+          <li>Member name and ID</li>
+          <li>Group name</li>
+          <li>Decline reason (e.g., "Email address missing")</li>
+          <li>Timestamp of decline</li>
+        </ul>
+      </section>
+
+      <!-- Dashboard -->
+      <section id="dashboard" class="section">
+        <h2>📈 Data Dashboard</h2>
+        <p>The dashboard provides a comprehensive view of all collected member data with powerful filtering and export capabilities.</p>
+
+        <h3>Dashboard Features</h3>
+        <ul>
+          <li><strong>Statistics:</strong> View total, pending, approved, and declined member counts</li>
+          <li><strong>Search:</strong> Search across username, name, group, and Q&A answers</li>
+          <li><strong>Filters:</strong> Filter by status (pending/approved/declined) or group name</li>
+          <li><strong>Sorting:</strong> Click column headers to sort by group, username, date, or status</li>
+          <li><strong>Pagination:</strong> View 10, 25, 50, or 100 members per page</li>
+          <li><strong>Bulk Selection:</strong> Select multiple members for batch operations</li>
+        </ul>
+
+        <h3>Action Buttons</h3>
+        <div class="feature-list">
+          <div class="feature-card">
+            <h4>Download to CSV</h4>
+            <p>Export selected or all filtered members to a CSV file</p>
+          </div>
+          <div class="feature-card">
+            <h4>Push to Google Sheet</h4>
+            <p>Sync all data to your configured Google Sheet</p>
+          </div>
+          <div class="feature-card">
+            <h4>Open Google Sheet</h4>
+            <p>Quick link to view your Google Sheet</p>
+          </div>
+          <div class="feature-card">
+            <h4>Clear All Data</h4>
+            <p>Delete all member data (requires confirmation)</p>
+          </div>
+        </div>
+
+        <h3>Using Filters</h3>
+        <ol>
+          <li><strong>Search:</strong> Type in the search bar to find specific members</li>
+          <li><strong>Status:</strong> Select "Pending", "Approved", or "Declined" from dropdown</li>
+          <li><strong>Group:</strong> Select a specific group from the dropdown</li>
+          <li><strong>Clear:</strong> Click "Clear Filters" to reset all filters</li>
+        </ol>
+      </section>
+
+      <!-- Backup & Restore -->
+      <section id="backup-restore" class="section">
+        <h2>💾 Backup & Restore</h2>
+        <p>Group Collect automatically backs up your data daily and provides manual backup options.</p>
+
+        <h3>Automatic Backups</h3>
+        <ul>
+          <li>Daily backups are created automatically at midnight</li>
+          <li>Last 7 days of backups are kept in Chrome storage</li>
+          <li>Backups include all members, settings, and decline logs</li>
+        </ul>
+
+        <h3>Creating a Manual Backup</h3>
+        <p>To create a manual backup (future feature):</p>
+        <ol>
+          <li>Send a message to the background script with type "CREATE_BACKUP"</li>
+          <li>The backup will be downloaded as a JSON file</li>
+          <li>Save this file in a safe location</li>
+        </ol>
+
+        <h3>Restoring from Backup</h3>
+        <p>To restore from a backup (future feature):</p>
+        <ol>
+          <li>Send a message to the background script with type "RESTORE_BACKUP"</li>
+          <li>Include the backup JSON data in the message</li>
+          <li>All data will be restored from the backup</li>
+        </ol>
+
+        <div class="warning">
+          <strong>⚠️ Warning:</strong> Restoring from a backup will overwrite all current data. Make sure you have a recent backup before restoring!
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section id="settings" class="section">
+        <h2>⚙️ Settings</h2>
+        <p>Configure Group Collect to match your workflow and preferences.</p>
+
+        <h3>Available Settings</h3>
+        <ul>
+          <li><strong>Google Sheet URL:</strong> Link your Google Sheet for automatic exports</li>
+          <li><strong>Auto-Decline Feature:</strong> Enable/disable automatic member filtering</li>
+          <li><strong>Decline Rules:</strong> Configure which criteria trigger auto-decline</li>
+          <li><strong>Selected Group:</strong> Choose which group to customize (future feature)</li>
+        </ul>
+
+        <h3>Changing Settings</h3>
+        <ol>
+          <li>Click the extension icon to open the popup</li>
+          <li>Navigate to the <strong>Settings</strong> page</li>
+          <li>Modify your preferences</li>
+          <li>Click <strong>"Save"</strong> buttons to persist changes</li>
+        </ol>
+      </section>
+
+      <!-- Troubleshooting -->
+      <section id="troubleshooting" class="section">
+        <h2>🔧 Troubleshooting</h2>
+
+        <h3>Extension Not Collecting Members</h3>
+        <ul>
+          <li>Make sure you're on the Facebook group members page</li>
+          <li>Check that member requests are visible on the page</li>
+          <li>Refresh the page and try again</li>
+          <li>Check browser console for errors (F12 → Console)</li>
+        </ul>
+
+        <h3>Google Sheets Not Working</h3>
+        <ul>
+          <li>Verify the Google Sheet URL is correct</li>
+          <li>Make sure you granted permissions when prompted</li>
+          <li>Try clicking "SYNC QUESTIONS/ANSWERS" first</li>
+          <li>Check that the sheet is not protected or read-only</li>
+        </ul>
+
+        <h3>Auto-Decline Not Working</h3>
+        <ul>
+          <li>Verify the feature is enabled (toggle is ON)</li>
+          <li>Check that at least one decline rule is configured</li>
+          <li>Make sure you're on the Facebook group members page</li>
+          <li>Facebook UI changes may require selector updates</li>
+        </ul>
+
+        <h3>Badge Not Showing Correct Count</h3>
+        <ul>
+          <li>Collect member data again to refresh counts</li>
+          <li>Send a message with type "UPDATE_BADGE" to refresh manually</li>
+          <li>Check Chrome storage for data consistency</li>
+        </ul>
+
+        <h3>Viewing Error Logs</h3>
+        <p>To view detailed error logs:</p>
+        <ol>
+          <li>Send a message to background script with type "GET_ERROR_LOG"</li>
+          <li>Review the error log entries</li>
+          <li>Report persistent issues on GitHub</li>
+        </ol>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="section">
+        <h2>❓ Frequently Asked Questions</h2>
+
+        <h3>Is my data secure?</h3>
+        <p>Yes! All data is stored locally in your browser using Chrome's storage API. Nothing is sent to external servers except when you explicitly push to Google Sheets.</p>
+
+        <h3>Can I use this with multiple groups?</h3>
+        <p>Yes! The extension automatically detects which group you're viewing and stores data accordingly. You can filter by group in the dashboard.</p>
+
+        <h3>What happens if I decline someone by mistake?</h3>
+        <p>Declined members are permanently declined on Facebook. However, they can request to join again, and you can approve them at that time.</p>
+
+        <h3>Does this work with Facebook's new interface?</h3>
+        <p>The extension is designed to work with Facebook's current interface. If Facebook updates their UI, the extension may need updates to continue working.</p>
+
+        <h3>Can I export data to Excel?</h3>
+        <p>Yes! Use the "Download to CSV" button, which creates a file that can be opened in Excel, Google Sheets, or any spreadsheet application.</p>
+
+        <h3>How often does automatic backup run?</h3>
+        <p>Automatic backups run once every 24 hours. The last 7 backups are kept in Chrome storage.</p>
+
+        <h3>Can I customize the decline rules?</h3>
+        <p>Currently, you can configure email requirements and required questions. Custom regex rules are planned for a future update.</p>
+
+        <h3>What permissions does the extension need?</h3>
+        <ul>
+          <li><strong>Storage:</strong> To save member data locally</li>
+          <li><strong>Notifications:</strong> To alert you about new members and events</li>
+          <li><strong>Identity:</strong> To authenticate with Google for Sheets export</li>
+          <li><strong>Active Tab:</strong> To collect data from Facebook pages</li>
+        </ul>
+      </section>
+
+      <div class="note" style="margin-top: 50px;">
+        <strong>Need More Help?</strong> Visit our GitHub repository or contact support for additional assistance.
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
