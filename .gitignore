@@ -3,6 +3,7 @@ node_modules/
 
 # Build output
 dist/
+coverage/
 
 # Editor directories
 .vscode/
@@ -26,3 +27,8 @@ yarn-error.log*
 *.tmp
 *.temp
 prd-unpacked/
+
+# Local/private screenshots and planning docs
+Screenshot*.png
+Images to Share/
+FB-Group-Capture-PRD.docx

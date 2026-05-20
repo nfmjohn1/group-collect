@@ -281,7 +281,7 @@ Potential features for future versions:
 
 ## Credits
 
-**Built for**: Private Community
+**Built for**: Private community management workflows
 
 **Tech Stack**: React, TypeScript, Webpack, Chrome Extensions API, Google Apps Script
 
