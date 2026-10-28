@@ -137,11 +137,11 @@ async function handleGetSettings(sendResponse: (response: MessageResponse) => vo
 
 // Handle pushing data to Google Sheets
 async function handlePushToSheet(
-  payload: { spreadsheetId: string; members: MemberData[] },
+  payload: { spreadsheetId: string; sheetGid?: number | null; members: MemberData[] },
   sendResponse: (response: MessageResponse) => void
 ) {
   try {
-    const { spreadsheetId, members } = payload;
+    const { spreadsheetId, sheetGid, members } = payload;
 
     if (!spreadsheetId) {
       sendResponse({ success: false, error: 'No spreadsheet ID provided' });
@@ -154,7 +154,7 @@ async function handlePushToSheet(
     }
 
     const rows = membersToRows(members);
-    const result = await appendToSheet(spreadsheetId, rows);
+    const result = await appendToSheet(spreadsheetId, rows, sheetGid ?? null);
 
     console.log(`[Background] Pushed ${result.updatedRows} rows to sheet`);
     sendResponse({

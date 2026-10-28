@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MemberData, ExtensionSettings } from '../types/types';
-import { extractSpreadsheetId } from '../services/sheetsApi';
+import { extractSpreadsheetId, extractSheetGid } from '../services/sheetsApi';
 
 const Popup: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'settings'>('home');
@@ -132,7 +132,7 @@ const Popup: React.FC = () => {
     chrome.runtime.sendMessage(
       {
         type: 'PUSH_TO_SHEET',
-        payload: { spreadsheetId, members }
+        payload: { spreadsheetId, sheetGid: extractSheetGid(googleSheetUrl), members }
       },
       (response) => {
         if (response?.success) {
